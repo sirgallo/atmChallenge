@@ -1,7 +1,7 @@
 # Key Val Store CLI/Provider
 
 `A command line tool for interacting with the key-val store`
-*performed within main project directory*
+*performed within main project directory* [@root](../)
 
 
 ## Building

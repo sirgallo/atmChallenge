@@ -1,6 +1,6 @@
 # Middleware and API creation
 
-the `core` module imports a submodule called `baseServer`, which includes all of the necessary components to scaffold a new API, built on top of `express 4`.
+the [@core](../core/) module imports a submodule called [@baseServer](../core/baseServer/), which includes all of the necessary components to scaffold a new API, built on top of `express 4`.
 
 ## Base Server
 

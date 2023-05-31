@@ -22,7 +22,7 @@ export interface ILedgerEntry {
 }
 ```
 
-the associated driver is under `@db/providers/LedgerOpProvider.ts`.
+the associated driver is under [@db/providers/LedgerOpProvider.ts](../db/providers/LedgerOpProvider.ts).
 
 
 ## user
@@ -42,7 +42,7 @@ export interface IUser {
 }
 ```
 
-the associated driver is under `@db/providers/UserOpProvider.ts`.
+the associated driver is under [@db/providers/UserOpProvider.ts](../db/providers/UserOpProvider.ts).
 
 
 ## token
@@ -65,7 +65,7 @@ export interface IToken {
 }
 ```
 
-the associated driver is under `@db/providers/TokenOpProvider.ts`.
+the associated driver is under [@db/providers/TokenOpProvider.ts](../db/providers/TokenOpProvider.ts).
 
 
 ## system
@@ -83,4 +83,4 @@ export interface ISystem {
 }
 ```
 
-the associated driver is under `@db/providers/SystemOpProvider.ts`.
+the associated driver is under [@db/providers/SystemOpProvider.ts](../db/providers/SystemOpProvider.ts).

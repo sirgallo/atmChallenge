@@ -38,7 +38,8 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 ```
 
 The in-mem db can then be seeded and used with mock data, which is supplied under:
-`@db/testUtils/LocalDbUtils.ts`
+
+[@db/testUtils/LocalDbUtils.ts](../db/testUtils/LocalDbUtils.ts)
 
 
 ## Issues

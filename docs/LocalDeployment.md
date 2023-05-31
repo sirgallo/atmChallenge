@@ -36,11 +36,11 @@ cd ./SimpleLedger
 
 the api layer and db layer are segregated off from the world, with the haproxy being the single
 point of entry to access the apis beneath. The haproxy instance will bind to the hostname/ip of the host system
-and utilized self signed certs to provide https/ssl access to the cluster. Haproxy handles load balancing requests to available systems, and uses a `least connection` approach when distributing requests.
+and utilizes self signed certs to provide https/ssl access to the cluster. Haproxy handles load balancing requests to available systems, and uses a `least connection` approach when distributing requests.
 
 Backend services have a path prefixed with `b_v1`, which just indicates backend version 1.
 
-Self signed certs can be generated in the `@certs` folder, where directions are given. Since the certs are being generated for the particular hostname running the services, they can be bound directly to the container where haproxy is running.
+Self signed certs can be generated in the [@certs](../certs) folder, where directions are given. Since the certs are being generated for the particular hostname running the services, they can be bound directly to the container where haproxy is running.
 
 
 ## Requirements
