@@ -1,24 +1,23 @@
-import path from 'path';
-
 import { promisify } from 'util';
-import { writeFile, existsSync, readFile, mkdir, appendFile } from 'fs';
-import { randomUUID } from 'crypto';
+import { 
+  writeFile, existsSync, readFile, mkdir, appendFile, WriteFileOptions
+} from 'fs';
 
 import { LogProvider } from '@core/providers/LogProvider';
-import { IFileOpOpts } from '@core/models/filesystem/IFileOp';
 
 export const asyncWriteFile = promisify(writeFile);
 export const asyncReadFile = promisify(readFile);
 export const asyncMkdir = promisify(mkdir);
 export const asyncAppendFile = promisify(appendFile);
 
+
 /*
   File Operation Helper Class
 */
 
 export class FileOpProvider {
-  private log = new LogProvider('File Op Provider');
-  constructor(private opts?: IFileOpOpts) {}
+  private zLog = new LogProvider('File Op Provider');
+  constructor() {}
 
   exists(pathForFile: string): boolean {
     try { return existsSync(pathForFile); } 
@@ -33,32 +32,17 @@ export class FileOpProvider {
     } catch (err) { throw err; }
   }
 
-  async readFile(fileName: string) {
+  async readFile(fileName: string, opts?: { encoding?: any, flag?: any }): Promise<Buffer> {
     try {
-      this.log.info(`Attempting to read file: ${fileName}`);
-      const res = await asyncReadFile(fileName, {
-        ...this.opts?.encoding,
-        ...this.opts?.flag
-      });
+      this.zLog.info(`Attempting to read file: ${fileName}`);
+      const res = await asyncReadFile(fileName, opts);
 
-      const jsonResult = JSON.parse(res.toString());
-      this.log.success(`File successfully read to json object, returning result.`);
-
-      return jsonResult;
+      return res;
     } catch (err) { throw err; }  
   }
 
-  async writeLogFile(payload: any, pathForFile?: string, passive?: boolean): Promise<string> {
-    const filename = `${randomUUID({ disableEntropyCache: true })}.log`;
-    const fullPath =  pathForFile ? pathForFile : path.normalize(path.join(process.cwd(), filename));
-    
-    try {
-      if (! passive) this.log.info(`Attempting to write json payload to this path: ${fullPath}`);
-      if (! this.exists(fullPath)) await asyncWriteFile(fullPath, `${payload}\n`, this.opts);
-      else await asyncAppendFile(fullPath,`${payload}\n`, this.opts);
-      if (! passive) this.log.success(`File written to ${fullPath}.`)
-
-      return fullPath;
-    } catch (err) { throw err; }
+  async writeFile(fileName: string, payload: string, opts?: WriteFileOptions) {
+    await asyncWriteFile(fileName, payload, opts);
+    return true;
   }
 }

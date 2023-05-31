@@ -174,7 +174,7 @@ test('test inserting multiple transactions, then getting all transactions', asyn
   ];
   const allTransactions: ILedgerEntry[] = [ firstTransaction ];
 
-  for (const [ idx, obj ] of Object.entries(transactions)) {
+  for (const [ _, obj ] of Object.entries(transactions)) {
     const { transactionSize, operation } = obj;
     const totalBalance = (() => {
       const lastTotal = last(allTransactions).totalBalance;

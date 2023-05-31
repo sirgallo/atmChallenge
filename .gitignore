@@ -10,3 +10,5 @@ dist
 certs/*.key
 certs/*.crt 
 certs/*.pem
+
+cli/token/jsonWebTokenLocalStorage*

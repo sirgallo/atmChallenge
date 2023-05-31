@@ -5,7 +5,7 @@
   "scripts": {
     "build:all": "grunt --gruntfile gruntfile.cjs",
     "start:ledger": "node --no-warnings --experimental-modules --es-module-specifier-resolution=node --loader ./moduleAlias.mjs ./dist/ledger/StartLedgerService.js --color",
-    "cli": "node --no-warnings --experimental-modules --es-module-specifier-resolution=nodenext --loader ./moduleAlias.mjs ./dist/cli/LedgerCLI.js --color",
+    "cli": "node --no-warnings --experimental-modules --es-module-specifier-resolution=node --loader ./moduleAlias.mjs ./dist/cli/CLI.js --color" ,
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "author": "Sir Gallo",

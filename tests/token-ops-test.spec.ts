@@ -1,6 +1,6 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import lodash from 'lodash';
-const { first, isEqual, isEmpty, isNull } = lodash;
+const { first } = lodash;
 
 import { LedgerMongooseProvider } from '@db/providers/LedgerMongooseProvider';
 import { dbConf } from '@db/DbConf';

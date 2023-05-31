@@ -1,6 +1,6 @@
 import { 
   connect, createConnection, ConnectOptions,
-  Connection, Schema, ClientSession, connections
+  Connection, Schema, ClientSession
 } from 'mongoose';
 
 import { IMongoCredentials } from '@core/models/dataAccess/IMongoose';

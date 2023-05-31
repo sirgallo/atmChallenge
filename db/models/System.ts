@@ -19,6 +19,19 @@ export interface ISystem {
   updatedAt?: Date;
 }
 
+interface JWTProps {
+  jwtSecret: string;
+  refreshSecret: string;
+  timeSpan: number;
+  refreshTimeSpan: number;
+}
+
+// TODO
+export interface ISystemProperties {
+  sysId: string;
+  jwt: JWTProps;
+}
+
 
 //======================== mongo specific schemas
 
