@@ -41,3 +41,7 @@ Backend services have a path prefixed with `b_v1`, which just indicates backend 
 
 Self signed certs can be generated in the `@certs` folder, where directions are given. Since the certs are being generated for the particular hostname running the services, they can be bound directly to the container where haproxy is running.
 
+
+## Requirements
+
+Make sure that docker engine, as well as docker-compose are installed on your local machine. If you are running mac or windows, docker-desktop includes both. However, this has not been tested on windows (there are a lot of bash files), and has only been tested on CentOs Stream and mac os.

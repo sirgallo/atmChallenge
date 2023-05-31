@@ -19,6 +19,7 @@
 
 Command line arguments should be as follows:
 
+```
   --operation=<getBalance | getTransactions | createTransaction | authenticate | register>
   --payload=<BalanceRequest | TransactionsRequest | CreateTransactionRequest | AuthenticateUserRequest | RegisterUserRequest>
   --userId=<userId> (required for Ledger Transactions, injected in header of request, not required for auth)
@@ -26,7 +27,7 @@ Command line arguments should be as follows:
   --host=<host> (optional)  --> this will resolve to hostname of machine otherwise
   --port=<port> (optional)
   --https=<boolean> (optional)
-
+```
 
 ## Operations - Client Operations
 
