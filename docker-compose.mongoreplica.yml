@@ -1,0 +1,40 @@
+version: "3"
+services:
+  ledgerdbprimary:
+    container_name: ledgerdb_primary_cont
+    image: mongo:latest
+    volumes:
+      - ./db/rs-init.sh:/scripts/rs-init.sh
+    networks:
+      - ledger_db_layer
+    ports:
+      - '27018:27017'
+    restart: always
+    depends_on:
+      - ledgerdbreplica1
+      - ledgerdbreplica2
+    links:
+      - ledgerdbreplica1
+      - ledgerdbreplica2
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "ledger_replication_set" ]
+  ledgerdbreplica1:
+    container_name: ledgerdb_replica1_cont
+    image: mongo:latest
+    networks:
+      - ledger_db_layer
+    ports:
+      - '27019:27017'
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "ledger_replication_set" ]
+  ledgerdbreplica2:
+    container_name: ledgerdb_replica2_cont
+    image: mongo:latest
+    networks:
+      - ledger_db_layer
+    ports:
+      - '27020:27017'
+    restart: always
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "ledger_replication_set" ]
+networks:
+  ledger_db_layer:
+    driver: bridge
