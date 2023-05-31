@@ -8,6 +8,7 @@ cd ./SimpleLedger
 `Deployment is handled in two stages`
 
 1.) Deploy and seed the mongodb replication set w/ the appropriate schemas
+
 2.) Deploy the services and the load balancer
 
 
