@@ -23,9 +23,9 @@ Command line arguments should be as follows:
   --payload=<BalanceRequest | TransactionsRequest | CreateTransactionRequest | AuthenticateUserRequest | RegisterUserRequest>
   --userId=<userId> (required for Ledger Transactions, injected in header of request, not required for auth)
   --bypassSSLVerification=<boolean> (optional, only for self signed certs) --> this is required locally for testing
-  --host=<host> (optional)  --> this will resolve to hostname of machine otherwise
-  --port=<port> (optional)
-  --https=<boolean> (optional)
+  --host=<host> (optional)  --> this will resolve to hostname of machine otherwise (where the load balancer is bound)
+  --port=<port> (optional) --> for https, not needed since defaults to 443
+  --https=<boolean> (optional) --> defaults to true
 ```
 
 ## Client Operations
