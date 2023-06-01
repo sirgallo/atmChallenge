@@ -9,7 +9,6 @@
 **currently using node 18**
 
 ```bash
-  cd ../cli
   npm install
   npm run build:all
 ```

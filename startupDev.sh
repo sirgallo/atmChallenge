@@ -2,7 +2,7 @@
 
 readonly truthyInput="input should be yes or no"
 
-echo "Init services? (yes or no):"
+echo "Init services for first time? (yes or no):"
 read startServices
 
 if [ "$startServices" == "yes" ]
@@ -18,16 +18,11 @@ then
 elif [ "$startServices" == "no" ]
 then
   echo "restarting services..."
-  docker-compose -f docker-compose.mongoreplica.yml down
-  docker-compose -f docker-compose.ledger.dev.yml down
-
-  sleep 10
-
-  docker-compose -f docker-compose.mongoreplica.yml up -d
+  export HOSTNAME
+  docker-compose -f docker-compose.mongoreplica.yml start
 
   sleep 20
-  export HOSTNAME
-  docker-compose -f docker-compose.ledger.dev.yml up --build
+  docker-compose -f docker-compose.ledger.dev.yml up
 else
   echo truthyInput
 fi
