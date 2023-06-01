@@ -74,3 +74,32 @@ import { CLIProvider } from '@cli/providers/CLIProvider';
 
 const resp = await this.cliProv[<method>](<payload>);
 ```
+
+## Note on Endpoints
+
+The endpoints are as follows (if you want to use Postman to test):
+
+https://<hostname>/b_v1/auth/authenticate
+ 
+https://<hostname>/b_v1/auth/register
+ 
+https://<hostname>/b_v1/ledger/gettransactions
+
+https://<hostname>/b_v1/ledger/createtransaction
+
+https://<hostname>/b_v1/ledger/getbalance
+
+for `ledger` endpoints, it is required to first authenticate using `/auth/authenticate` or when registering
+
+then the following headers are required for `ledger`:
+
+  accesstoken --> this will be the resp from `auth/authenticate` or `auth/register`, which is the json web token
+  userId --> the userId of the registered user
+
+payloads are the same as above
+
+for system, which is not client facing, there are two endpoints:
+
+https://<hostname>/b_v1/system/getbalance --> used for getting current system balance
+
+https://<hostname>/b_v1/system/addfunds --> used for adding or removing funds from the system itself
