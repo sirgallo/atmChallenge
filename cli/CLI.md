@@ -68,6 +68,8 @@ This token does have a time span before needing to be refreshed, but contains a 
 
 The value is currently hardcoded to 2 minutes on both the jwt and refresh token, but this can be changed.
 
+If you become unauthenticated after that 2 minute period, just launch an `authenticate` request to re-authenticate your user
+
 
 ## Importing into Project
 
