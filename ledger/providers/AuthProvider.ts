@@ -79,7 +79,7 @@ export class AuthProvider implements AuthEndpoints {
 
             return jwtEntry.token;
           } else {
-            await this.tokenOpProv.findOneAndUpdate({
+            const tokenEntry = await this.tokenOpProv.findOneAndUpdate({
               query: {
                 filter: { userId: currUserEntry.userId }, 
                 update: { 
@@ -90,9 +90,11 @@ export class AuthProvider implements AuthEndpoints {
                 }
               }
             });
-          }
 
-          this.zLog.success(`Token updated with User Id: ${currUserEntry.userId}`);
+            this.zLog.success(`Token updated with User Id: ${currUserEntry.userId}`);
+
+            return tokenEntry.token;
+          }
         } else { throw new Error('Unknown error trying to find mToken entry.'); }
       } else { throw new Error('Passwords do not match.'); }
     } catch (err) {
