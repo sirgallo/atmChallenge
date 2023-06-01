@@ -75,7 +75,7 @@ import { CLIProvider } from '@cli/providers/CLIProvider';
 const resp = await this.cliProv[<method>](<payload>);
 ```
 
-## Note on Endpoints
+## Note on Endpoints (for use with Postman)
 
 The endpoints are as follows (if you want to use Postman to test):
 
@@ -103,3 +103,5 @@ for system, which is not client facing, there are two endpoints:
 https://<hostname>/b_v1/system/getbalance --> used for getting current system balance
 
 https://<hostname>/b_v1/system/addfunds --> used for adding or removing funds from the system itself
+
+all requests are `POST` requests
