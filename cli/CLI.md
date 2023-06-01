@@ -1,6 +1,6 @@
-# Key Val Store CLI/Provider
+# CLI/Provider
 
-`A command line tool for interacting with the key-val store`
+`A command line tool for interacting with the ledger`
 *performed within main project directory* [@root](../)
 
 
@@ -28,7 +28,7 @@ Command line arguments should be as follows:
   --https=<boolean> (optional)
 ```
 
-## Operations - Client Operations
+## Client Operations
 
 `getBalance - get balance for current user`
 ```bash
@@ -58,7 +58,7 @@ Command line arguments should be as follows:
 
 ## Cert Gen
 
-`check out @certs/ to generate self signed certs.`
+check out [CertGen](../certs/CertGen.md) to generate self signed certs.
 
 
 ## Auth
