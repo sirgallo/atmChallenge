@@ -66,6 +66,8 @@ check out [CertGen](../certs/CertGen.md) to generate self signed certs.
 When a user is first registered, or the user is authenticating themselves, a json web token is written to storage locally so that passwords are not required on every operation.
 This token does have a time span before needing to be refreshed, but contains a longer lasting refresh token stored server side so that, if needed, the token can be refreshed automatically on a request.
 
+The value is currently hardcoded to 2 minutes on both the jwt and refresh token, but this can be changed.
+
 
 ## Importing into Project
 

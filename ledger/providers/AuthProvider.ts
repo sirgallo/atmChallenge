@@ -1,7 +1,7 @@
 import lodash from 'lodash';
 const { first, some, every } = lodash;
 
-import { JwtProvider, TIMESPAN, REFRESHTIMESPAN } from '@core/auth/providers/JwtProvider';
+import { JwtProvider } from '@core/auth/providers/JwtProvider';
 import { EncryptProvider } from '@core/auth/providers/EncryptProvider';
 import { LogProvider } from '@core/providers/LogProvider';
 import { jwtSecret, refreshSecret } from '@core/auth/configs/Secret';
@@ -11,6 +11,7 @@ import { AuthEndpoints } from '@ledger/models/Endpoints';
 import { AuthenticateUserRequest, RegisterUserRequest } from '@ledger/models/AuthRequest';
 import { TokenOpProvider } from '@db/providers/TokenOpProvider';
 import { UserOpProvider } from '@db/providers/UserOpProvider';
+import { toMs } from '@core/utils/Utils';
 
 
 const NAME = 'Auth Provider'
@@ -36,8 +37,8 @@ export class AuthProvider implements AuthEndpoints {
       const passwordsMatch = await this.crypt.compare(opts.password, currUserEntry.password);
 
       if (passwordsMatch) {
-        const jwToken = await this.jwt.sign(currUserEntry.userId);
-        const refreshToken = await this.jwt.sign(currUserEntry.userId, refreshSecret, REFRESHTIMESPAN);
+        const jwToken = await this.jwt.sign(currUserEntry.userId, jwtSecret, toMs.min(2));
+        const refreshToken = await this.jwt.sign(currUserEntry.userId, refreshSecret, toMs.min(2));
         const tokenEntry: IToken = await this.tokenOpProv.findOne({ query: { userId: currUserEntry.userId }});
     
         if (! tokenEntry) {
@@ -47,8 +48,8 @@ export class AuthProvider implements AuthEndpoints {
             refreshToken: refreshToken,
             issueDate: new Date(),
             refreshIssueDate: new Date(),
-            expiresIn: TIMESPAN,
-            refreshExpiresIn: REFRESHTIMESPAN
+            expiresIn: toMs.min(2),
+            refreshExpiresIn: toMs.min(2)
           };
           const resp = await this.tokenOpProv.insertOne(newAccessToken);
           this.zLog.success(`New Token added with User Id: ${resp.userId}`);
@@ -109,8 +110,8 @@ export class AuthProvider implements AuthEndpoints {
       const newUser: IUser = first(await this.ledgerDb.mUser.insertMany([ opts ]));
       this.zLog.success(`New User added with User Id: ${newUser.userId}`);
 
-      const jwToken = await this.jwt.sign(newUser.userId);
-      const refreshToken = await this.jwt.sign(newUser.userId, refreshSecret, REFRESHTIMESPAN);
+      const jwToken = await this.jwt.sign(newUser.userId, jwtSecret, toMs.min(2));
+      const refreshToken = await this.jwt.sign(newUser.userId, refreshSecret, toMs.min(2));
 
       const newAccessToken: IToken = {
         userId: newUser.userId,
@@ -118,8 +119,8 @@ export class AuthProvider implements AuthEndpoints {
         refreshToken: refreshToken,
         issueDate: new Date(),
         refreshIssueDate: new Date(),
-        expiresIn: TIMESPAN,
-        refreshExpiresIn: REFRESHTIMESPAN
+        expiresIn: toMs.min(2),
+        refreshExpiresIn: toMs.min(2)
       };
 
       const resp = await this.tokenOpProv.insertOne(newAccessToken);
