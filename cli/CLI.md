@@ -95,8 +95,10 @@ for `ledger` endpoints, it is required to first authenticate using `/auth/authen
 
 then the following headers are required for `ledger`:
 
+```
   accesstoken --> this will be the resp from `auth/authenticate` or `auth/register`, which is the json web token
   userId --> the userId of the registered user
+```
 
 payloads are the same as above
 
