@@ -100,7 +100,7 @@ then the following headers are required for `ledger`:
   userId --> the userId of the registered user
 ```
 
-payloads are the same as above
+payloads are the same as above, but for `gettransactions` and `getbalance`, the body can be empty since the userId is injected into the request on the service route from the headers once the token is verified
 
 for system, which is not client facing, there are two endpoints:
 
